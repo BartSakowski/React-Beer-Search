@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
+import axios from 'axios'
 import SearchBar from './components/SearchBar'
 
 function App() {
 
   const [appState, setAppState] = useState({
-    loading: false,
     beers: {},
   });
 
@@ -20,19 +20,31 @@ function App() {
       })
       .then(([resp1, resp2, resp3, resp4, resp5]) => {
         
-        setAppState({loading: false, beers:[...resp1, ...resp2, ...resp3, ...resp4, ...resp5] })
+        setAppState({beers:[...resp1, ...resp2, ...resp3, ...resp4, ...resp5] })
       })
-  },[appState])
+  },[])
 
   
     return (
-      
-     <div className="App">
+      <div className="App">
+      {console.log(appState)}
       Beer Search
-       {appState.loading === true ? <div> loading... </div> : <SearchBar/>}
+       {appState.loading === true ? <div> loading... </div> : <SearchBar {...appState}/>}
     </div>
     )
 
 }
 
 export default App
+
+
+
+  // useEffect(()=> {
+  //   const fetchData = async () => {
+  //     const result = await axios(
+  //       'https://api.punkapi.com/v2/beers?page=1&per_page=80'
+  //     );
+  //     setAppState(result.data);
+  //   };
+  //   fetchData();
+  // }, [])

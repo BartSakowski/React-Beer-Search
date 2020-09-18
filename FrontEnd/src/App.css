@@ -3,3 +3,13 @@
   flex-direction: column;
 }
 
+.Search-Field{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: auto;
+  /* padding-left: 16;
+  margin-left: 100px;
+  margin-right: 100px; */
+
+}
