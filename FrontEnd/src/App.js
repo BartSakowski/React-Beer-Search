@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import axios from 'axios'
 import SearchBar from './components/SearchBar'
+
 
 function App() {
 
@@ -23,14 +23,13 @@ function App() {
         setAppState({beers:[...resp1, ...resp2, ...resp3, ...resp4, ...resp5] })
       })
   },[])
-
   
     return (
       <div className="App">
       {console.log(appState)}
       Beer Search
        {appState.loading === true ? <div> loading... </div> : <SearchBar {...appState}/>}
-    </div>
+      </div>
     )
 
 }

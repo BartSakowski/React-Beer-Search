@@ -11,5 +11,9 @@
   /* padding-left: 16;
   margin-left: 100px;
   margin-right: 100px; */
+}
+
+.Cards{
+  display: flex;
 
 }
