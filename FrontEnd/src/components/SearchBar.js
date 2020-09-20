@@ -33,33 +33,44 @@ const SearchBar = props => {
   };
 
   const searchSubmit = () => {
-   let filteredCards = searchState.beers.filter(beer => {
+    {menuState.category === 'name' ? nameSearch()
+      : menuState.category === 'food_pairing' ? foodPairingSearch() : console.log('keep going')}
+
+  };
+
+  const nameSearch = () => {
+    let filteredCards = searchState.beers.filter(beer => {
       return beer.name.includes(textField.text)
     })
     console.log(filteredCards)
     setCardState({
       passingCards: filteredCards
     });
-    
+  }
+
+  const foodPairingSearch = () => {
+    let filteredCards = searchState.beers.filter(beer => {
+       beer.food_pairing.map(food => {
+         return food.includes(textField.text)
+       })
+    });
+    console.log(filteredCards)
   }
 
   return (
     <div>
-
-      {/* {console.log(searchState.beers[0])} */}
       {console.log(menuState)}
       {console.log(textField)}
       {console.log(cardState.passingCards)}
       <div className='Search-Field'>
-      {console.log('passingCards', cardState.passingCards)}
+        {console.log('passingCards', cardState.passingCards)}
         <FormControl 
           style={{ margin: '10px'}}
-          >
+        >
           <InputLabel>How Do You Want To Find Your Beer?</InputLabel>
           <Select 
             onChange={handleChange}
-            value={''}
-            >
+          >
             <MenuItem value={'name'}>Name</MenuItem>
             <MenuItem value={'food_pairing'}>Food Pairing</MenuItem>
             <MenuItem value={'abv'}>ABV</MenuItem>
@@ -70,7 +81,6 @@ const SearchBar = props => {
             <MenuItem value={'attenuation_level'}>Attenuation Level</MenuItem>
           </Select>
         </FormControl>
-
         <TextField 
           style={{ margin: '10px'}}
           id='outlined-basic' 
@@ -79,11 +89,9 @@ const SearchBar = props => {
           value={textField.text}
           onChange={handleTextChange}
         />
-
         <Button style={{ margin: '10px'}} variant='contained' onClick={() => searchSubmit()}> 
           Search
         </Button>
-
       </div>
       <Grid 
         container
