@@ -2,31 +2,33 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardHeader, CardMedia, CardContent, CardActions, Typography } from '@material-ui/core';
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-    // height: 645
-  },
-  media: {
-    height: 200,
-  },
-});
+// const useStyles = makeStyles({
+//   // root: { //the entire card
+//   //   width: 1000,
+//   //   maxHeight: 100,
+//   //   margin: 5
+//   // },
+//   // media: { //just the image
+//   //   height: 200,
+//   //   // width: 400
+//   // },
+// });
 
 const BeerCard = props => {
-  const classes = useStyles();
+  // const classes = useStyles();
   // debugger
   return(
-    <div>
+    <div >
 
-    <Card className={classes.root}>
+    <Card style={{ height: 800, width: 300, margin: 10, boxShadow: "1px 3px 1px #9E9E9E" }} >
     {console.log("BeerCard", props)}
     
       <CardHeader
         title={props.card.name}
       />
       <CardMedia  
-        className={classes.media} 
-        src={props.card.image}
+        style={{ height: 200, image: props.card.image}}
+        
       />
       <CardContent>
         <Typography>
@@ -42,7 +44,11 @@ const BeerCard = props => {
           <strong>
             Food Pairing: <br></br>
           </strong>
-          The food is listed here
+          <ul>
+            <li>{props.card.food_pairing[0]}</li>
+            <li>{props.card.food_pairing[1]}</li>
+            <li style={{ visibility: props.card.food_pairing[2] ? 'visible' : 'hidden'  }}>{props.card.food_pairing[2] ? props.card.food_pairing[2] : null}</li>
+          </ul>
         </Typography>
       </CardContent>
     </Card>

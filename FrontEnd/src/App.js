@@ -26,8 +26,10 @@ function App() {
   
     return (
       <div className="App">
-      {console.log(appState)}
+      {/* {console.log(appState)} */}
+      <strong>
       Beer Search
+      </strong>
        {appState.loading === true ? <div> loading... </div> : <SearchBar {...appState}/>}
       </div>
     )
