@@ -34,28 +34,45 @@ const SearchBar = props => {
 
   const searchSubmit = () => {
     {menuState.category === 'name' ? nameSearch()
-      : menuState.category === 'food_pairing' ? foodPairingSearch() : console.log('keep going')}
+      : menuState.category === 'food_pairing' ? foodPairingSearch() 
+      : menuState.category === 'abv' ? abvSearch()
+      : console.log('havent coded that yet')}
 
   };
 
-  const nameSearch = () => {
+  const nameSearch = () => { // needs to account for capital letters.
     let filteredCards = searchState.beers.filter(beer => {
       return beer.name.includes(textField.text)
     })
-    console.log(filteredCards)
+    // console.log(filteredCards)
     setCardState({
       passingCards: filteredCards
     });
   }
 
-  const foodPairingSearch = () => {
-    let filteredCards = searchState.beers.filter(beer => {
-       beer.food_pairing.map(food => {
-         return food.includes(textField.text)
-       })
+  const foodPairingSearch = () => { // right now it returns arrays with just the food item, instead of the full object.
+    let filteredCards = searchState.beers.map(beer => {
+      return beer.food_pairing.filter( food => {
+        return food.includes(textField.text)
+
+      })
     });
     console.log(filteredCards)
+    console.log(searchState)
   }
+
+  const abvSearch = () => { // works! Just need to determine a range, so the user doesn't have to be super specific.
+    let integar = parseFloat(textField.text);
+    let filteredCards = searchState.beers.filter(beer => {
+      return beer.abv === integar
+    });
+    console.log(filteredCards)
+    console.log(integar)
+
+    setCardState({
+      passingCards: filteredCards
+    });
+  };
 
   return (
     <div>
