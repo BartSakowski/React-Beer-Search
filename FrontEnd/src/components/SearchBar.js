@@ -106,10 +106,18 @@ const SearchBar = props => {
     });
   };
 
-  const hopsSearch = () => { // same problems as foodPairingSearch
-    let filteredCards = searchState.beers.ingredients.map(beer => {
-      console.log(beer)
-    });
+  const hopsSearch = () => { // works!
+   let filteredCards = searchState.beers.filter(beer => {
+     return beer.ingredients.hops.some(hops => {
+      return hops.name.includes(textField.text)
+     })
+   })
+    console.log('filteredCards',filteredCards)
+    console.log('searchState', searchState)
+
+    setCardState({
+      passingCards: filteredCards
+    })
   };
 
   const attenuationLevelSearch = () => {  //works!
@@ -120,11 +128,21 @@ const SearchBar = props => {
     setCardState({
       passingCards: filteredCards
     });
-  }
+  };
 
-  const maltsSearch = () => { // needs programming, similar issues as foodPairingSearch
-    console.log("Malt Search")
-  }
+  const maltsSearch = () => { // works!!
+    let filteredCards = searchState.beers.filter(beer => {
+      return beer.ingredients.malt.some(malt => {
+        return malt.name.includes(textField.text)
+      });
+    });
+    console.log('filteredCards',filteredCards)
+    console.log('searchState', searchState)
+
+    setCardState({
+      passingCards: filteredCards
+    });
+  };
 
   return (
     <div>
