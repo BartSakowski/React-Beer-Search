@@ -36,8 +36,12 @@ const SearchBar = props => {
     {menuState.category === 'name' ? nameSearch()
       : menuState.category === 'food_pairing' ? foodPairingSearch() 
       : menuState.category === 'abv' ? abvSearch()
-      : console.log('havent coded that yet')}
-
+      : menuState.category === 'ibu' ? ibuSearch()
+      : menuState.category === 'srm' ? srmSearch()
+      : menuState.category === 'hops' ? hopsSearch()
+      : menuState.category === 'malts' ? maltsSearch()
+      : menuState.category === 'attenuation_level' ? attenuationLevelSearch()
+      : console.log('keep going')};
   };
 
   const nameSearch = () => { // needs to account for capital letters.
@@ -48,34 +52,83 @@ const SearchBar = props => {
     setCardState({
       passingCards: filteredCards
     });
-  }
+  };
 
-  const foodPairingSearch = () => { // right now it returns arrays with just the food item, instead of the full object.
-    let filteredCards = searchState.beers.map(beer => {
-      return beer.food_pairing.filter( food => {
-        return food.includes(textField.text)
-
-      })
+  const foodPairingSearch = () => { // IT WORKS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    let filteredCards = searchState.beers.filter(beer => {
+        return beer.food_pairing.some(food => {
+          return food.includes(textField.text)
+      });
     });
     console.log(filteredCards)
     console.log(searchState)
-  }
+
+    setCardState({
+      passingCards: filteredCards
+    });
+    
+  };
 
   const abvSearch = () => { // works! Just need to determine a range, so the user doesn't have to be super specific.
-    let integar = parseFloat(textField.text);
+    let inputAbv = parseFloat(textField.text);
     let filteredCards = searchState.beers.filter(beer => {
-      return beer.abv === integar
+      return beer.abv === inputAbv
+    });
+    // console.log(filteredCards)
+    // console.log(inputAbv)
+    setCardState({
+      passingCards: filteredCards
+    });
+  };
+
+  const ibuSearch = () => { // works! range would be good here, or at least some guidance. maybe a "hint" as to what this does
+    let inputIbu = parseFloat(textField.text)
+    let filteredCards = searchState.beers.filter(beer => {
+      return beer.ibu === inputIbu
+    });
+    // console.log(filteredCards)
+    // console.log(inputIbu)
+    setCardState({
+      passingCards: filteredCards
+    });
+  };
+
+  const srmSearch = () => { //works!
+    let inputSrm = parseFloat(textField.text)
+    let filteredCards = searchState.beers.filter(beer => {
+      return beer.srm === inputSrm
     });
     console.log(filteredCards)
-    console.log(integar)
+    console.log(inputSrm)
 
     setCardState({
       passingCards: filteredCards
     });
   };
 
+  const hopsSearch = () => { // same problems as foodPairingSearch
+    let filteredCards = searchState.beers.ingredients.map(beer => {
+      console.log(beer)
+    });
+  };
+
+  const attenuationLevelSearch = () => {  //works!
+    let inputAtt = parseFloat(textField.text);
+    let filteredCards = searchState.beers.filter(beer => {
+      return beer.attenuation_level === inputAtt
+    });
+    setCardState({
+      passingCards: filteredCards
+    });
+  }
+
+  const maltsSearch = () => { // needs programming, similar issues as foodPairingSearch
+    console.log("Malt Search")
+  }
+
   return (
     <div>
+      {console.log(searchState)}
       {console.log(menuState)}
       {console.log(textField)}
       {console.log(cardState.passingCards)}
@@ -123,6 +176,6 @@ const SearchBar = props => {
     </div>
 
   )
-}
+};
 
-export default SearchBar
+export default SearchBar;

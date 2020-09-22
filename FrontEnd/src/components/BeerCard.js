@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+
 import { Card, CardHeader, CardMedia, CardContent, CardActions, Typography } from '@material-ui/core';
 
 // const useStyles = makeStyles({
@@ -15,7 +15,7 @@ import { Card, CardHeader, CardMedia, CardContent, CardActions, Typography } fro
 // });
 
 const BeerCard = props => {
-  // const classes = useStyles();
+  // const
   // debugger
   return(
     <div >
