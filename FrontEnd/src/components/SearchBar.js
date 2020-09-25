@@ -5,15 +5,9 @@ import BeerCard from './BeerCard'
 
 const SearchBar = props => {
   const [searchState, setSearchState] = useState(props);
-  const [menuState, setMenuState] = useState({
-    category: ''
-  });
-  const [textField, setTextField] = useState({
-    text: ''
-  })
-  const [cardState, setCardState] = useState({
-    passingCards: []
-  })
+  const [menuState, setMenuState] = useState({ category: '' });
+  const [textField, setTextField] = useState({ text: '' })
+  const [cardState, setCardState] = useState({ passingCards: [] })
 
   useEffect(() => {
     setSearchState(props);
@@ -44,9 +38,9 @@ const SearchBar = props => {
       : console.log('keep going')};
   };
 
-  const nameSearch = () => { // needs to account for capital letters.
+  const nameSearch = () => {
     let filteredCards = searchState.beers.filter(beer => {
-      return beer.name.includes(textField.text)
+      return beer.name.toLowerCase().includes(textField.text.toLowerCase())
     })
     // console.log(filteredCards)
     setCardState({
@@ -57,7 +51,7 @@ const SearchBar = props => {
   const foodPairingSearch = () => { // IT WORKS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     let filteredCards = searchState.beers.filter(beer => {
         return beer.food_pairing.some(food => {
-          return food.includes(textField.text)
+          return food.toLowerCase().includes(textField.text.toLowerCase())
       });
     });
     console.log(filteredCards)
@@ -109,7 +103,7 @@ const SearchBar = props => {
   const hopsSearch = () => { // works!
    let filteredCards = searchState.beers.filter(beer => {
      return beer.ingredients.hops.some(hops => {
-      return hops.name.includes(textField.text)
+      return hops.name.toLowerCase().includes(textField.text.toLowerCase())
      })
    })
     console.log('filteredCards',filteredCards)
@@ -133,7 +127,7 @@ const SearchBar = props => {
   const maltsSearch = () => { // works!!
     let filteredCards = searchState.beers.filter(beer => {
       return beer.ingredients.malt.some(malt => {
-        return malt.name.includes(textField.text)
+        return malt.name.toLowerCase().includes(textField.text.toLowerCase())
       });
     });
     console.log('filteredCards',filteredCards)
@@ -192,7 +186,6 @@ const SearchBar = props => {
         })}
       </Grid>
     </div>
-
   )
 };
 
