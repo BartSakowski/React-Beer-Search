@@ -15,8 +15,9 @@ import { Card, CardHeader, CardMedia, CardContent, CardActions, Typography } fro
 // });
 
 const BeerCard = props => {
-  // const
-  // debugger
+  const stockImage = 'https://www.brewdog.com/media/aheadworks/store_locator/19/intro_logo/Brewdog.jpg'
+
+
   return(
     <div >
 
@@ -27,7 +28,9 @@ const BeerCard = props => {
         title={props.card.name}
       />
       <CardMedia  
-        style={{ height: 200, image: props.card.image}}
+        style={{ height: 200 }}
+        image={ props.card.image ? require("" + props.card.image) : stockImage}
+        // image={require( "" + props.card.image ? props.card.image : stockImage)}
         
       />
       <CardContent>
@@ -54,10 +57,6 @@ const BeerCard = props => {
     </Card>
     </div>
   )
-
-
-
-
 }
 
 export default BeerCard
