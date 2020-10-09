@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../App.css';
 import {Button, TextField, FormControl, Select, MenuItem, InputLabel, Grid} from '@material-ui/core';
-import BeerCard from './BeerCard'
+import CardFlipper from './CardFlipper';
 
 const SearchBar = props => {
   const [searchState, setSearchState] = useState(props);
@@ -14,6 +13,7 @@ const SearchBar = props => {
   }, [props])
 
   const handleChange = (event) => {
+    event.preventDefault();
     setMenuState({
       category: event.target.value
     });
@@ -182,7 +182,7 @@ const SearchBar = props => {
         alignItems='center'
       >
         { cardState.passingCards.map(card => {
-          return <BeerCard key={card.id} card={card} />
+          return <CardFlipper key={card.id} card={card} />
         })}
       </Grid>
     </div>
