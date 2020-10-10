@@ -16,9 +16,9 @@ const BeerCard = props => {
         <CardContent>
           <Typography>
             <strong>
-              ABV:<br></br>
+              ABV:
             </strong>
-            {abv}%
+             {` ${abv}%`}
           </Typography>
         </CardContent>
 

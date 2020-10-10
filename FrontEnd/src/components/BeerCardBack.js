@@ -1,63 +1,98 @@
 import React from 'react';
 import { Card, CardHeader, CardContent, Typography } from '@material-ui/core';
 
-export const BeerCardBack = props => {
+const BeerCardBack = props => {
+
+  const {name, abv, ibu, srm, attenuation_level} = props.card
+  const { hops, malt } = props.card.ingredients
+
+  const hopNames = () => { // pulls out names of all hops for this beer. 
+    return hops.map(hop =>{
+      return hop.name
+    })
+  }
+  const uniqueHops = Array.from(new Set(hopNames())) // gives only unique names of hops
+
+  const hopList = () => { // creates <li> 
+    return uniqueHops.map(hop => {
+     return <li>{hop}</li>
+    })
+  }
+
+  const maltNames = () => { // lists malt name in <li>
+    return malt.map(m => {
+      return <li>{m.name}</li>
+    })
+  }
+
   return (
+
     <div>
-      <Card style={{ height: 600, width: 400, margin: 10 }} variant='outlined'>
-        {console.log("BeerCardBack", props)}
       
+      {console.log('maltNames', maltNames())}
+
+      <Card style={{ height: 600, width: 400, margin: 10 }} variant='outlined'>     
         <CardHeader
-          title={props.card.name}
+          title={name}
         />
         <CardContent>
           <Typography>
             <strong>
-              ABV:<br></br>
+              ABV:
             </strong>
-            {props.card.abv}%
+            {` ${abv}%`}
           </Typography>
         </CardContent>
 
         <CardContent>
           <Typography>
             <strong>
-              IBU:<br></br>
+              IBU:
             </strong>
-            {props.card.ibu}
+            {` ${ibu}`}
           </Typography>
         </CardContent>
 
         <CardContent>
           <Typography>
             <strong>
-              SRM:<br></br>
+              SRM:
             </strong>
-            {props.card.srm}
+            {` ${srm}`}
           </Typography>
         </CardContent>
         
         <CardContent>
           <Typography>
             <strong>
-              Attenuation Level:<br></br>
+              Attenuation Level:
             </strong>
-            {props.card.attenuation_level}
+            {` ${attenuation_level}`}
           </Typography>
         </CardContent>
 
         <CardContent>
           <Typography>
             <strong>
-              Food Pairing: <br></br>
+              Hops: <br></br>
+            </strong>
+          <ul>
+           {hopList()}
+          </ul>
+          </Typography>
+        </CardContent>
+
+        <CardContent>
+          <Typography>
+            <strong>
+              Malts:<br></br>
             </strong>
             <ul>
-              <li>{props.card.food_pairing[0]}</li>
-              <li>{props.card.food_pairing[1]}</li>
-              <li style={{ visibility: props.card.food_pairing[2] ? 'visible' : 'hidden'  }}>{props.card.food_pairing[2] ? props.card.food_pairing[2] : null}</li>
+            {maltNames()}
             </ul>
           </Typography>
         </CardContent>
+
         <button onClick={props.handleFlip}>FLIP!</button>
       </Card>
       </div>
