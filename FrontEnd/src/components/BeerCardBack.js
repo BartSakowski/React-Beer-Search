@@ -1,4 +1,5 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles'
 import { Card, CardHeader, CardContent, Typography } from '@material-ui/core';
 
 const BeerCardBack = props => {
@@ -23,7 +24,14 @@ const BeerCardBack = props => {
     return malt.map(m => {
       return <li>{m.name}</li>
     })
-  }
+  };
+  
+  const classNames = makeStyles({
+    content: {
+      padding: '10px'
+    } 
+  })
+
 
   return (
 
@@ -35,25 +43,19 @@ const BeerCardBack = props => {
         <CardHeader
           title={name}
         />
-        <CardContent>
+        <CardContent className={classNames.content}>
           <Typography>
             <strong>
               ABV:
             </strong>
             {` ${abv}%`}
           </Typography>
-        </CardContent>
-
-        <CardContent>
           <Typography>
             <strong>
               IBU:
             </strong>
             {` ${ibu}`}
           </Typography>
-        </CardContent>
-
-        <CardContent>
           <Typography>
             <strong>
               SRM:

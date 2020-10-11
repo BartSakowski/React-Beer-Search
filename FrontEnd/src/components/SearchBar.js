@@ -35,14 +35,13 @@ const SearchBar = props => {
       : menuState.category === 'hops' ? hopsSearch()
       : menuState.category === 'malts' ? maltsSearch()
       : menuState.category === 'attenuation_level' ? attenuationLevelSearch()
-      : console.log('keep going')};
+      : alert('Please select a category')};
   };
 
   const nameSearch = () => {
     let filteredCards = searchState.beers.filter(beer => {
       return beer.name.toLowerCase().includes(textField.text.toLowerCase())
     })
-    // console.log(filteredCards)
     setCardState({
       passingCards: filteredCards
     });
@@ -54,9 +53,6 @@ const SearchBar = props => {
           return food.toLowerCase().includes(textField.text.toLowerCase())
       });
     });
-    console.log(filteredCards)
-    console.log(searchState)
-
     setCardState({
       passingCards: filteredCards
     });
@@ -64,12 +60,10 @@ const SearchBar = props => {
   };
 
   const abvSearch = () => { // works! Just need to determine a range, so the user doesn't have to be super specific.
-    let inputAbv = parseFloat(textField.text);
-    let filteredCards = searchState.beers.filter(beer => {
+  let inputAbv = parseFloat(textField.text);
+  let filteredCards = searchState.beers.filter(beer => {
       return beer.abv === inputAbv
     });
-    // console.log(filteredCards)
-    // console.log(inputAbv)
     setCardState({
       passingCards: filteredCards
     });
@@ -80,8 +74,6 @@ const SearchBar = props => {
     let filteredCards = searchState.beers.filter(beer => {
       return beer.ibu === inputIbu
     });
-    // console.log(filteredCards)
-    // console.log(inputIbu)
     setCardState({
       passingCards: filteredCards
     });
@@ -92,9 +84,6 @@ const SearchBar = props => {
     let filteredCards = searchState.beers.filter(beer => {
       return beer.srm === inputSrm
     });
-    console.log(filteredCards)
-    console.log(inputSrm)
-
     setCardState({
       passingCards: filteredCards
     });
@@ -106,9 +95,6 @@ const SearchBar = props => {
       return hops.name.toLowerCase().includes(textField.text.toLowerCase())
      })
    })
-    console.log('filteredCards',filteredCards)
-    console.log('searchState', searchState)
-
     setCardState({
       passingCards: filteredCards
     })
@@ -130,9 +116,6 @@ const SearchBar = props => {
         return malt.name.toLowerCase().includes(textField.text.toLowerCase())
       });
     });
-    console.log('filteredCards',filteredCards)
-    console.log('searchState', searchState)
-
     setCardState({
       passingCards: filteredCards
     });
