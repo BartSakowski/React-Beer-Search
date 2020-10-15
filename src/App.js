@@ -22,10 +22,10 @@ function App() {
   
   return (
     <div className="App">
-    <strong>
-    Beer Search
-    </strong>
-      {appState.loading === true ? <div> loading... </div> : <SearchBar {...appState}/>}
+      <h2>
+        Beer Search
+      </h2>
+      <SearchBar {...appState}/>
     </div>
   )
 }

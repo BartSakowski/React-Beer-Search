@@ -12,13 +12,11 @@ const CardFlipper = props => {
     setFlipped(
       isFlipped => !isFlipped
     )
-    console.log(isFlipped)
+
   }
 
   return (
     <div>
-    {console.log("flipper", props)}
-    {console.log(isFlipped)}
     <ReactCardFlip isFlipped={isFlipped} flipDirection='horizontal'>
       <BeerCard card={props.card} handleFlip={handleFlip}/>
       <BeerCardBack card={props.card} handleFlip={handleFlip}/>

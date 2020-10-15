@@ -22,8 +22,16 @@ code {
 }
 
 .Search-Field{
-  display: flex;
+  display: inline-flex;
+  flex-wrap: wrap;
   flex-direction: column;
-  width: 40%;
+  width: 100%;
   margin: auto;
+  max-width: 40%;
+  
+}
+
+.Description{
+  padding: 25px 0 7px;
+  font: inherit;
 }

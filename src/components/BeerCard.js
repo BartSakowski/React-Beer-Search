@@ -8,7 +8,7 @@ const BeerCard = props => {
   return(
       <div >  
       <Card style={{ height: 600, width: 400, margin: 10 }} variant='outlined'>
-      {console.log("BeerCard", props)}
+      {/* {console.log("BeerCard", props)} */}
       
         <CardHeader
           title={name}
@@ -36,11 +36,11 @@ const BeerCard = props => {
             <strong>
               Food Pairing: <br></br>
             </strong>
-            <ul>
-              <li>{food_pairing[0]}</li>
-              <li>{food_pairing[1]}</li>
-              <li style={{ visibility: food_pairing[2] ? 'visible' : 'hidden'  }}>{food_pairing[2] ? food_pairing[2] : null}</li>
-            </ul>
+            <div style={{ margin: 'unset'}}>
+              <p style={{ margin: 'unset' }}>{food_pairing[0]}</p>
+              <p style={{ margin: 'unset' }}>{food_pairing[1]}</p>
+              <p style={{ margin: 'unset', visibility: food_pairing[2] ? 'visible' : 'hidden'  }}>{food_pairing[2] ? food_pairing[2] : null}</p>
+            </div>
           </Typography>
         </CardContent>
         <button onClick={props.handleFlip}>FLIP!</button>

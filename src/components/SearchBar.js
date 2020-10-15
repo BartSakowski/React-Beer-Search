@@ -27,7 +27,7 @@ const SearchBar = props => {
   };
 
   const searchSubmit = () => {
-    {menuState.category === 'name' ? nameSearch()
+    menuState.category === 'name' ? nameSearch()
       : menuState.category === 'food_pairing' ? foodPairingSearch() 
       : menuState.category === 'abv' ? abvSearch()
       : menuState.category === 'ibu' ? ibuSearch()
@@ -35,7 +35,7 @@ const SearchBar = props => {
       : menuState.category === 'hops' ? hopsSearch()
       : menuState.category === 'malts' ? maltsSearch()
       : menuState.category === 'attenuation_level' ? attenuationLevelSearch()
-      : alert('Please select a category')};
+      : alert('Please select a category')
   };
 
   const nameSearch = () => {
@@ -121,21 +121,24 @@ const SearchBar = props => {
     });
   };
 
+  // const categoryExplain = () => {
+  //   menuState.category === 'name' ?  <div>Looking for something specific? Type it in and we'll give you the details!</div> :  <div></div>
+  // }
+
   return (
     <div>
       {console.log(searchState)}
-      {console.log(menuState)}
-      {console.log(textField)}
-      {console.log(cardState.passingCards)}
       <div className='Search-Field'>
         {console.log('passingCards', cardState.passingCards)}
         <FormControl 
           style={{ margin: '10px'}}
         >
           <InputLabel>How Do You Want To Find Your Beer?</InputLabel>
+        
           <Select 
+            value={menuState.category}
             onChange={handleChange}
-          >
+          > 
             <MenuItem value={'name'}>Name</MenuItem>
             <MenuItem value={'food_pairing'}>Food Pairing</MenuItem>
             <MenuItem value={'abv'}>ABV</MenuItem>
@@ -145,6 +148,16 @@ const SearchBar = props => {
             <MenuItem value={'malts'}>Malts</MenuItem>
             <MenuItem value={'attenuation_level'}>Attenuation Level</MenuItem>
           </Select>
+          { // Shows details under the category select
+          menuState.category === 'name' ? <div className='Description'>Looking for something specific? Type it in and we'll give you the details!</div> 
+          : menuState.category === 'food_pairing' ? <div className='Description'>Here's a couple, two, three food items that go great with this beer.</div>
+          : menuState.category === 'abv' ? <div className='Description'>Alcohol by volume, you already knew this one!</div>
+          : menuState.category === 'ibu' ?  <div className='Description'>International Bittering Unit: a measure of bitterness between 1 and 120. The higher the IBU, the more bitter it is. </div>
+          : menuState.category === 'srm' ? <div className='Description'>Standard Reference Method: A scale of 1 to 40+ that describes the color of beer. Colors over 40 exist, but are variations on "Dark Black".</div>
+          : menuState.category === 'hops' ? <div className='Description'>Hops add bitterness, flavor, color and aroma to beer. Flavors can be earthy, sweet, floral, citrus, etc. </div>
+          : menuState.category === 'malts' ? <div className='Description'>Malt adds flavor and color to beer. Often, the flavor will be in the form of roasty, nutty, sometimes chocolatey flavors </div>
+          : menuState.category === 'attenuation_level' ? <div className='Description'>Refers to the conversion of sugars into alcohol and carbon dioxide. The more attenuated, the drier and more alcoholic the beer will be. </div>
+          : <div></div>}
         </FormControl>
         <TextField 
           style={{ margin: '10px'}}

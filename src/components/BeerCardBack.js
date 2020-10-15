@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles'
 import { Card, CardHeader, CardContent, Typography } from '@material-ui/core';
 
 const BeerCardBack = props => {
@@ -16,22 +15,15 @@ const BeerCardBack = props => {
 
   const hopList = () => { // creates <li> 
     return uniqueHops.map(hop => {
-     return <li>{hop}</li>
+     return <p style={{ margin: 'unset'}}>{hop}</p>
     })
   }
 
   const maltNames = () => { // lists malt name in <li>
     return malt.map(m => {
-      return <li>{m.name}</li>
+      return <p style={{ margin: 'unset' }}>{m.name}</p>
     })
   };
-  
-  const classNames = makeStyles({
-    content: {
-      padding: '10px'
-    } 
-  })
-
 
   return (
 
@@ -43,7 +35,7 @@ const BeerCardBack = props => {
         <CardHeader
           title={name}
         />
-        <CardContent className={classNames.content}>
+        <CardContent>
           <Typography>
             <strong>
               ABV:
@@ -62,36 +54,33 @@ const BeerCardBack = props => {
             </strong>
             {` ${srm}`}
           </Typography>
+          <Typography>
+            <strong>
+              Attenuation Level:
+            </strong>
+            {` ${attenuation_level}%`}
+          </Typography>
         </CardContent>
         
         <CardContent>
           <Typography>
             <strong>
-              Attenuation Level:
+              Hops:
             </strong>
-            {` ${attenuation_level}`}
+            <div>
+              {hopList()}
+            </div>
           </Typography>
         </CardContent>
 
-        <CardContent>
-          <Typography>
-            <strong>
-              Hops: <br></br>
-            </strong>
-          <ul>
-           {hopList()}
-          </ul>
-          </Typography>
-        </CardContent>
-
-        <CardContent>
-          <Typography>
+        <CardContent >
+          <Typography >
             <strong>
               Malts:<br></br>
             </strong>
-            <ul>
+            <div >
             {maltNames()}
-            </ul>
+            </div>
           </Typography>
         </CardContent>
 
