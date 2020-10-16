@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardHeader, CardContent, Typography } from '@material-ui/core';
+import { Button, CardHeader, CardContent, Typography, Box } from '@material-ui/core';
 
 const BeerCardBack = props => {
 
@@ -31,7 +31,7 @@ const BeerCardBack = props => {
       
       {console.log('maltNames', maltNames())}
 
-      <Card style={{ height: 600, width: 400, margin: 10 }} variant='outlined'>     
+      <Box style={{ height: 600, width: 400, margin: 10 }} boxShadow={9}>     
         <CardHeader
           title={name}
         />
@@ -84,8 +84,8 @@ const BeerCardBack = props => {
           </Typography>
         </CardContent>
 
-        <button onClick={props.handleFlip}>FLIP!</button>
-      </Card>
+        <Button variant="contained" onClick={props.handleFlip}>Flip to Front!</Button>
+      </Box>
       </div>
 
   )

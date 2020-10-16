@@ -47,7 +47,7 @@ const SearchBar = props => {
     });
   };
 
-  const foodPairingSearch = () => { // IT WORKS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  const foodPairingSearch = () => { 
     let filteredCards = searchState.beers.filter(beer => {
         return beer.food_pairing.some(food => {
           return food.toLowerCase().includes(textField.text.toLowerCase())
@@ -59,7 +59,7 @@ const SearchBar = props => {
     
   };
 
-  const abvSearch = () => { // works! Just need to determine a range, so the user doesn't have to be super specific.
+  const abvSearch = () => {
   let inputAbv = parseFloat(textField.text);
   let filteredCards = searchState.beers.filter(beer => {
       return beer.abv === inputAbv
@@ -69,7 +69,7 @@ const SearchBar = props => {
     });
   };
 
-  const ibuSearch = () => { // works! range would be good here, or at least some guidance. maybe a "hint" as to what this does
+  const ibuSearch = () => { 
     let inputIbu = parseFloat(textField.text)
     let filteredCards = searchState.beers.filter(beer => {
       return beer.ibu === inputIbu
@@ -79,7 +79,7 @@ const SearchBar = props => {
     });
   };
 
-  const srmSearch = () => { //works!
+  const srmSearch = () => { 
     let inputSrm = parseFloat(textField.text)
     let filteredCards = searchState.beers.filter(beer => {
       return beer.srm === inputSrm
@@ -89,7 +89,7 @@ const SearchBar = props => {
     });
   };
 
-  const hopsSearch = () => { // works!
+  const hopsSearch = () => { 
    let filteredCards = searchState.beers.filter(beer => {
      return beer.ingredients.hops.some(hops => {
       return hops.name.toLowerCase().includes(textField.text.toLowerCase())
@@ -100,7 +100,7 @@ const SearchBar = props => {
     })
   };
 
-  const attenuationLevelSearch = () => {  //works!
+  const attenuationLevelSearch = () => {  
     let inputAtt = parseFloat(textField.text);
     let filteredCards = searchState.beers.filter(beer => {
       return beer.attenuation_level === inputAtt
@@ -110,7 +110,7 @@ const SearchBar = props => {
     });
   };
 
-  const maltsSearch = () => { // works!!
+  const maltsSearch = () => { 
     let filteredCards = searchState.beers.filter(beer => {
       return beer.ingredients.malt.some(malt => {
         return malt.name.toLowerCase().includes(textField.text.toLowerCase())
@@ -121,9 +121,6 @@ const SearchBar = props => {
     });
   };
 
-  // const categoryExplain = () => {
-  //   menuState.category === 'name' ?  <div>Looking for something specific? Type it in and we'll give you the details!</div> :  <div></div>
-  // }
 
   return (
     <div>

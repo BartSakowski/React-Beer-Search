@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import SearchBar from './components/SearchBar'
+import SearchBar from './components/SearchBar';
+import Logo from './logo.png';
 
 
 function App() {
@@ -22,9 +23,9 @@ function App() {
   
   return (
     <div className="App">
-      <h2>
-        Beer Search
-      </h2>
+      <div>
+        <img src={Logo} alt='beer logo'/>
+      </div>
       <SearchBar {...appState}/>
     </div>
   )
