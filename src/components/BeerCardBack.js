@@ -28,14 +28,12 @@ const BeerCardBack = props => {
   return (
 
     <div>
-      
-      {console.log('maltNames', maltNames())}
-
+    
       <Box style={{ height: 600, width: 400, margin: 10 }} boxShadow={9}>     
         <CardHeader
           title={name}
         />
-        <CardContent>
+        <CardContent style={{ padding: 8}}>
           <Typography>
             <strong>
               ABV:
@@ -62,7 +60,7 @@ const BeerCardBack = props => {
           </Typography>
         </CardContent>
         
-        <CardContent>
+        <CardContent style={{ padding: 8}}>
           <Typography>
             <strong>
               Hops:
@@ -73,7 +71,7 @@ const BeerCardBack = props => {
           </Typography>
         </CardContent>
 
-        <CardContent >
+        <CardContent style={{ padding: 8}}>
           <Typography >
             <strong>
               Malts:<br></br>

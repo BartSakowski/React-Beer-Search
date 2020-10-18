@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import SearchBar from './components/SearchBar';
-import Logo from './logo.png';
+import Logo from './logo2.png';
 
 
 function App() {
@@ -23,6 +23,7 @@ function App() {
   
   return (
     <div className="App">
+
       <div>
         <img src={Logo} alt='beer logo'/>
       </div>

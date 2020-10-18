@@ -13,7 +13,7 @@ const BeerCard = props => {
       <CardHeader
         title={name}
       />
-      <CardContent>
+      <CardContent style={{ padding: 8}}>
         <Typography>
           <strong>
             ABV:
@@ -22,7 +22,7 @@ const BeerCard = props => {
         </Typography>
       </CardContent>
 
-      <CardContent>
+      <CardContent style={{ padding: 8}}>
         <Typography>
           <strong>
             Description:<br></br>
@@ -31,12 +31,12 @@ const BeerCard = props => {
         </Typography>
       </CardContent>
 
-      <CardContent>
+      <CardContent style={{ padding: 8}}>
         <Typography>
           <strong>
             Food Pairing: <br></br>
           </strong>
-          <div style={{ margin: 'unset'}}>
+          <div>
             <p style={{ margin: 'unset' }}>{food_pairing[0]}</p>
             <p style={{ margin: 'unset' }}>{food_pairing[1]}</p>
             <p style={{ margin: 'unset', visibility: food_pairing[2] ? 'visible' : 'hidden'  }}>{food_pairing[2] ? food_pairing[2] : null}</p>
