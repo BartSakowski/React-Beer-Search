@@ -16,6 +16,7 @@ const SearchBar = props => {
 
   const handleChange = (event) => {
     event.preventDefault();
+    setHiddenNumValidation('hidden');
     setHiddenCatValidation('hidden')
     setTextField({
       text: ''
@@ -33,6 +34,7 @@ const SearchBar = props => {
   };
 
   const searchSubmit = () => {
+    
     menuState.category === 'name' ? nameSearch()
       : menuState.category === 'food_pairing' ? foodPairingSearch() 
       : menuState.category === 'abv' ? abvSearch()
@@ -42,6 +44,7 @@ const SearchBar = props => {
       : menuState.category === 'malts' ? maltsSearch()
       : menuState.category === 'attenuation_level' ? attenuationLevelSearch()
       : setHiddenCatValidation('visible')
+    
   };
 
   const nameSearch = () => {
@@ -65,7 +68,6 @@ const SearchBar = props => {
   };
 
   const abvSearch = () => {
-    
     let inputAbv = parseFloat(textField.text);
   
     let filteredCards = searchState.beers.filter(beer => {
@@ -89,7 +91,7 @@ const SearchBar = props => {
     });
 
     if(isNaN(inputIbu)){
-      setHiddenNumValidation('visibile')
+      setHiddenNumValidation('visible')
     } else {
       setCardState({
         passingCards: filteredCards
@@ -143,6 +145,7 @@ const SearchBar = props => {
   };
 
   const maltsSearch = () => { 
+    
     let filteredCards = searchState.beers.filter(beer => {
       return beer.ingredients.malt.some(malt => {
         return malt.name.toLowerCase().includes(textField.text.toLowerCase())
