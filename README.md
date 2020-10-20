@@ -6,5 +6,6 @@ An interactive search engine allowing the user to search for a beer from BrewDog
 
 This is a frontend only application utilizing React Hooks.
 
+## Demo
 
-
+Live demo available [here] (https://https://react-beer-search.netlify.app/)
