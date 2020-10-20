@@ -8,7 +8,8 @@ const SearchBar = props => {
   const [textField, setTextField] = useState({ text: '' });
   const [cardState, setCardState] = useState({ passingCards: [] });
   const [hiddenNumValidation, setHiddenNumValidation] = useState('hidden');
-  const [hiddenCatValidation, setHiddenCatValidation] = useState('hidden')
+  const [hiddenCatValidation, setHiddenCatValidation] = useState('hidden');
+  const [hiddenItemValidation, setHiddenItemValidation] = useState('hidden');
 
   useEffect(() => {
     setSearchState(props);
@@ -17,7 +18,8 @@ const SearchBar = props => {
   const handleChange = (event) => {
     event.preventDefault();
     setHiddenNumValidation('hidden');
-    setHiddenCatValidation('hidden')
+    setHiddenCatValidation('hidden');
+    setHiddenItemValidation('hidden');
     setTextField({
       text: ''
     })
@@ -34,7 +36,6 @@ const SearchBar = props => {
   };
 
   const searchSubmit = () => {
-    
     menuState.category === 'name' ? nameSearch()
       : menuState.category === 'food_pairing' ? foodPairingSearch() 
       : menuState.category === 'abv' ? abvSearch()
@@ -44,30 +45,48 @@ const SearchBar = props => {
       : menuState.category === 'malts' ? maltsSearch()
       : menuState.category === 'attenuation_level' ? attenuationLevelSearch()
       : setHiddenCatValidation('visible')
-    
   };
 
   const nameSearch = () => {
+
+    setHiddenItemValidation('hidden');
+
     let filteredCards = searchState.beers.filter(beer => {
       return beer.name.toLowerCase().includes(textField.text.toLowerCase())
-    })
-    setCardState({
-      passingCards: filteredCards
     });
+
+    if(filteredCards.length === 0){
+      setHiddenItemValidation('visible')
+    } else {
+      setCardState({
+        passingCards: filteredCards
+      })
+    };
   };
 
   const foodPairingSearch = () => { 
+
+    setHiddenItemValidation('hidden');
+
     let filteredCards = searchState.beers.filter(beer => {
         return beer.food_pairing.some(food => {
           return food.toLowerCase().includes(textField.text.toLowerCase())
       });
     });
-    setCardState({
-      passingCards: filteredCards
-    });
+
+    if(filteredCards.length === 0){
+      setHiddenItemValidation('visible')
+    } else {
+      setCardState({
+        passingCards: filteredCards
+      })
+    };
+
   };
 
   const abvSearch = () => {
+    setHiddenItemValidation('hidden');
+
     let inputAbv = parseFloat(textField.text);
   
     let filteredCards = searchState.beers.filter(beer => {
@@ -76,6 +95,8 @@ const SearchBar = props => {
     
     if(isNaN(inputAbv)){
       setHiddenNumValidation('visible')
+    } else if(filteredCards.length === 0){
+      setHiddenItemValidation('visible')
     } else {
       setCardState({
         passingCards: filteredCards
@@ -85,6 +106,8 @@ const SearchBar = props => {
   };
 
   const ibuSearch = () => { 
+    setHiddenItemValidation('hidden');
+
     let inputIbu = parseFloat(textField.text)
     let filteredCards = searchState.beers.filter(beer => {
       return beer.ibu === inputIbu
@@ -92,26 +115,31 @@ const SearchBar = props => {
 
     if(isNaN(inputIbu)){
       setHiddenNumValidation('visible')
+    } else if(filteredCards.length === 0){
+      setHiddenItemValidation('visible')
     } else {
       setCardState({
         passingCards: filteredCards
-      });
+      })
       setHiddenNumValidation('hidden')
     }
   };
 
   const srmSearch = () => { 
+    setHiddenItemValidation('hidden')
     let inputSrm = parseFloat(textField.text)
     let filteredCards = searchState.beers.filter(beer => {
       return beer.srm === inputSrm
     });
 
     if(isNaN(inputSrm)){
-      setHiddenNumValidation('visibile')
+      setHiddenNumValidation('visible')
+    } else if(filteredCards.length === 0){
+      setHiddenItemValidation('visible')
     } else {
       setCardState({
         passingCards: filteredCards
-      });
+      })
       setHiddenNumValidation('hidden')
     }
   };
@@ -129,17 +157,20 @@ const SearchBar = props => {
   };
 
   const attenuationLevelSearch = () => {  
+    setHiddenItemValidation('hidden');
     let inputAtt = parseFloat(textField.text);
     let filteredCards = searchState.beers.filter(beer => {
       return beer.attenuation_level === inputAtt
     });
 
     if(isNaN(inputAtt)){
-      setHiddenNumValidation('visibile')
+      setHiddenNumValidation('visible')
+    } else if(filteredCards.length === 0){
+      setHiddenItemValidation('visible')
     } else {
       setCardState({
         passingCards: filteredCards
-      });
+      })
       setHiddenNumValidation('hidden')
     }
   };
@@ -364,7 +395,9 @@ const SearchBar = props => {
         <Button style={{ margin: '10px'}} variant='contained' onClick={() => searchSubmit()}> 
           Search
         </Button>
+        <strong style={{ visibility: hiddenItemValidation, color: 'red' }}>Looks like there is nothing that matches that criteria! Try a different input!</strong>
       </div>
+
       <Grid 
         container
         direction='row'
