@@ -247,6 +247,7 @@ const SearchBar = props => {
             <MenuItem value={'Bramling Cross'}>Bramling Cross</MenuItem>
             <MenuItem value={'Bravo'}>Bravo</MenuItem>
             <MenuItem value={'Callista'}>Callista</MenuItem>
+            <MenuItem value={'Citra'}>Citra</MenuItem>
             <MenuItem value={'Cascade'}>Cascade</MenuItem>
             <MenuItem value={'Centennial'}>Centennial</MenuItem>
             <MenuItem value={'Challenger'}>Challenger</MenuItem>
