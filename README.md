@@ -8,4 +8,4 @@ This is a frontend only application utilizing React Hooks.
 
 ## Demo
 
-Live demo available [here] (https://react-beer-search.netlify.app/).
+Live demo available [here](https://react-beer-search.netlify.app/).
