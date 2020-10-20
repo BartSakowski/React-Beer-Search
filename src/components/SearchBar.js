@@ -209,9 +209,9 @@ const SearchBar = props => {
             <MenuItem value={'abv'}>ABV</MenuItem>
             <MenuItem value={'ibu'}>IBU</MenuItem>
             <MenuItem value={'srm'}>SRM</MenuItem>
+            <MenuItem value={'attenuation_level'}>Attenuation Level</MenuItem>
             <MenuItem value={'hops'}>Hops</MenuItem>
             <MenuItem value={'malts'}>Malts</MenuItem>
-            <MenuItem value={'attenuation_level'}>Attenuation Level</MenuItem>
           </Select>
           { // Shows details under the category select
           menuState.category === 'name' ? <div className='Description'>Looking for something specific? Type it in and we'll give you the details!</div> 
@@ -221,7 +221,7 @@ const SearchBar = props => {
           : menuState.category === 'srm' ? <div className='Description'>Standard Reference Method: A scale of 1 to 40+ that describes the color of beer. Colors over 40 exist, but are variations on "Dark Black".</div>
           : menuState.category === 'hops' ? <div className='Description'>Hops add bitterness, flavor, color and aroma to beer. Flavors can be earthy, sweet, floral, citrus, etc. </div>
           : menuState.category === 'malts' ? <div className='Description'>Malt adds flavor and color to beer. Often, the flavor will be in the form of roasty, nutty, sometimes chocolatey flavors </div>
-          : menuState.category === 'attenuation_level' ? <div className='Description'>Refers to the conversion of sugars into alcohol and carbon dioxide. The more attenuated, the drier and more alcoholic the beer will be. </div>
+          : menuState.category === 'attenuation_level' ? <div className='Description'>Refers to the conversion of sugars into alcohol and carbon dioxide. The more attenuated, the drier and more alcoholic the beer will be. Most will be attenuated between 65 - 80% </div>
           : <div></div>}
 
         {/* {  Below allows for the Select fields to appear for hops and malts and text field for the others } */}
