@@ -5,8 +5,10 @@ import CardFlipper from './CardFlipper';
 const SearchBar = props => {
   const [searchState, setSearchState] = useState(props);
   const [menuState, setMenuState] = useState({ category: '' });
-  const [textField, setTextField] = useState({ text: '' })
-  const [cardState, setCardState] = useState({ passingCards: [] })
+  const [textField, setTextField] = useState({ text: '' });
+  const [cardState, setCardState] = useState({ passingCards: [] });
+  const [hiddenNumValidation, setHiddenNumValidation] = useState('hidden');
+  const [hiddenCatValidation, setHiddenCatValidation] = useState('hidden')
 
   useEffect(() => {
     setSearchState(props);
@@ -14,6 +16,7 @@ const SearchBar = props => {
 
   const handleChange = (event) => {
     event.preventDefault();
+    setHiddenCatValidation('hidden')
     setTextField({
       text: ''
     })
@@ -38,7 +41,7 @@ const SearchBar = props => {
       : menuState.category === 'hops' ? hopsSearch()
       : menuState.category === 'malts' ? maltsSearch()
       : menuState.category === 'attenuation_level' ? attenuationLevelSearch()
-      : alert('Please select a category')
+      : setHiddenCatValidation('visible')
   };
 
   const nameSearch = () => {
@@ -59,10 +62,10 @@ const SearchBar = props => {
     setCardState({
       passingCards: filteredCards
     });
-    
   };
 
   const abvSearch = () => {
+    
     let inputAbv = parseFloat(textField.text);
   
     let filteredCards = searchState.beers.filter(beer => {
@@ -70,11 +73,12 @@ const SearchBar = props => {
       });
     
     if(isNaN(inputAbv)){
-      alert('This category requires a number.')
+      setHiddenNumValidation('visible')
     } else {
       setCardState({
         passingCards: filteredCards
-      });
+      })
+      setHiddenNumValidation('hidden')
     }
   };
 
@@ -85,11 +89,12 @@ const SearchBar = props => {
     });
 
     if(isNaN(inputIbu)){
-      alert('This category requires a number.')
+      setHiddenNumValidation('visibile')
     } else {
       setCardState({
         passingCards: filteredCards
       });
+      setHiddenNumValidation('hidden')
     }
   };
 
@@ -100,11 +105,12 @@ const SearchBar = props => {
     });
 
     if(isNaN(inputSrm)){
-      alert('This category requires a number.')
+      setHiddenNumValidation('visibile')
     } else {
       setCardState({
         passingCards: filteredCards
       });
+      setHiddenNumValidation('hidden')
     }
   };
 
@@ -117,7 +123,7 @@ const SearchBar = props => {
  
     setCardState({
       passingCards: filteredCards
-    })
+    });
   };
 
   const attenuationLevelSearch = () => {  
@@ -127,11 +133,12 @@ const SearchBar = props => {
     });
 
     if(isNaN(inputAtt)){
-      alert('This category requires a number.')
+      setHiddenNumValidation('visibile')
     } else {
       setCardState({
         passingCards: filteredCards
       });
+      setHiddenNumValidation('hidden')
     }
   };
 
@@ -156,7 +163,9 @@ const SearchBar = props => {
           style={{ margin: '10px'}}
         >
           <InputLabel>How Do You Want To Find Your Beer?</InputLabel>
-        
+
+          <strong style={{ visibility: hiddenCatValidation, color: 'red' }}>Please Select A Category!</strong>
+
           <Select 
             value={menuState.category}
             onChange={handleChange}
@@ -348,11 +357,11 @@ const SearchBar = props => {
           onChange={handleTextChange}
         />
         }
+        <strong style={{ visibility: hiddenNumValidation, color: 'red' }}>This category requires a number!</strong>
         <Button style={{ margin: '10px'}} variant='contained' onClick={() => searchSubmit()}> 
           Search
         </Button>
       </div>
-
       <Grid 
         container
         direction='row'
