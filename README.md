@@ -1,3 +1,10 @@
-To Start:
+## React Beer Search
 
-npm start
+An interactive search engine allowing the user to search for a beer from BrewDog Brewing
+
+## Technology
+
+This is a frontend only application utilizing React Hooks.
+
+
+
