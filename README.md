@@ -15,8 +15,8 @@ Live demo available [here](https://react-beer-search.netlify.app/).
 
 In the terminal, run the following
 
-`- cd react-beer-search
-- npm i && npm start`
+- cd react-beer-search
+- npm i && npm start
 
 This should run the development environment on localhost:3000
 
