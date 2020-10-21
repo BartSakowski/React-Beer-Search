@@ -13,7 +13,11 @@ Live demo available [here](https://react-beer-search.netlify.app/).
 ## Installation
 - Clone this repository
 
-- cd react-beer-search
+In the terminal, run the following
 
+`- cd react-beer-search
+- npm i && npm start`
+
+This should run the development environment on localhost:3000
 
 
